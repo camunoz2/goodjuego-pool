@@ -40,13 +40,10 @@ export default function Index({ data }) {
 
   return (
     <>
-      <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <div className="absolute t-0 l-0 -z-20 w-full h-full">
+      <div className="absolute t-0 l-0 -z-20 w-screen h-screen overflow-hidden">
         <Image layout="fixed" src={bg} alt="" />
       </div>
-      <div className="bg-[#100C2A] w-full h-full absolute -z-10 mix-blend-multiply" />
+      <div className="bg-[#100C2A] w-screen h-screen absolute -z-10 mix-blend-multiply" />
       <div className="container mx-auto px-4 py-16">
         <h1 className="text-4xl text-white font-extrabold">GoodJuego</h1>
         <p className="text-xl text-white">
