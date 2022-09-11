@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import GameItem from '../components/GameItem'
 import Image from 'next/image'
 import bg from '../public/mhbg.jpg'
+import Head from 'next/head'
 
-export default function Index() {
+export default function Index({ data }) {
   const games = ['Monster Hunter World', 'Mario Bros', 'Destiny 2']
   const [votesByGame, setVotesByGame] = useState([])
+  const [backgroundImage, setBackgroundImage] = useState('')
 
   useEffect(() => {
     getVotes()
@@ -38,6 +40,9 @@ export default function Index() {
 
   return (
     <>
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="absolute t-0 l-0 -z-20 w-full h-full">
         <Image layout="fixed" src={bg} alt="" />
       </div>
@@ -56,6 +61,7 @@ export default function Index() {
           </a>
         </p>
 
+        <p>{}</p>
         <div className="my-16" />
         <ul className="flex flex-col gap-2 items-start justify-center">
           {games.map((game, i) => {
@@ -74,4 +80,22 @@ export default function Index() {
       </div>
     </>
   )
+}
+
+export async function getServerSideProps(context) {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Client-ID': 'nrun15svvhdqm7kmn2k4gmwaznv8he',
+      Authorization: 'Bearer 95d3spf6jzq25vl45hmwagp234k8fp'
+    },
+    body: 'search "Monster Hunter Rise"; fields screenshots.url, screenshots.height;'
+  }
+
+  const res = await fetch('https://api.igdb.com/v4/games/', options)
+  const data = await res.json()
+
+  return {
+    props: { data }
+  }
 }
