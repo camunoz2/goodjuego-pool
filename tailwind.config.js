@@ -5,7 +5,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        body: ['bio-sans', 'sans-serif'],
+        display: ['bebas-neue-semirounded', 'sans-serif']
+      }
+    },
   },
   plugins: [],
 }
